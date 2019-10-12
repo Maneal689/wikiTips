@@ -61,4 +61,4 @@ function copyPhp() {
 
 exports.style = style;
 exports.watch = gulp.series(browserSyncInit, style, watch);
-exports.build = gulp.series(minifyCss, copyPhp, minifyJs);
+exports.build = gulp.series(style, minifyCss, copyPhp, minifyJs);

@@ -1,0 +1,130 @@
+@import "./palette.scss";
+@import "./display.scss";
+
+.btn {
+  @include reset;
+  border-radius: 2px;
+  box-shadow: 1px 1px 0.4em black;
+  padding: 0.4em 0.6em;
+  border: none;
+  transition: all ease 0.3s;
+  font-size: 1em;
+
+  &.primary {
+    color: $primary-text-color-light;
+    background-color: $primary-color;
+  }
+
+  &.primary-light {
+    color: $primary-text-color;
+    background-color: $primary-color-light;
+  }
+
+  &.secondary {
+    color: $primary-text-color-light;
+    background-color: $accent-color;
+  }
+
+  &:hover {
+    box-shadow: 1px 1px 0.3em black;
+    cursor: pointer;
+  }
+
+  &:active {
+    box-shadow: 1px 1px 0.2em black;
+  }
+
+  &.void {
+    @mixin textColor ($color: $primary-color) {
+      color: $color;
+      border-color: $color;
+    }
+
+    box-shadow: none;
+    background-color: transparent;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+
+    &.primary {
+      @include textColor($primary-color);
+
+      &:active {
+        @include textColor($primary-text-color-light);
+        background-color: $primary-color;
+      }
+    }
+
+    &.primary-light {
+      @include textColor($primary-color-light);
+
+      &:active {
+        @include textColor($primary-text-color-light);
+        background-color: $primary-color-light;
+      }
+    }
+
+    &.secondary {
+      @include textColor($accent-color);
+
+      &:active {
+        @include textColor($primary-text-color-light);
+        background-color: $accent-color;
+      }
+    }
+
+    &:active {
+      @include textColor($primary-text-color-light);
+      background-color: $primary-color;
+    }
+  }
+
+  &.circular {
+    border-radius: 50%;
+    padding: 0.2em 0.5em;
+  }
+}
+
+.text-input {
+  $padding-top: 1.2em;
+  display: inline-block;
+  position: relative;
+  padding-top: $padding-top;
+  transition: all ease 0.3s;
+
+  input {
+    border: none;
+    border-bottom: 1px solid $divider-color;
+    font-size: 1em;
+    text-indent: 0.3em;
+    transition: all ease 0.3s;
+
+    &+label {
+      position: absolute;
+      top: $padding-top;
+      left: 0.3em;
+      color: $secondary-text-color;
+      transition: all ease 0.3s;
+
+      &:hover {
+        cursor: text;
+      }
+    }
+
+    &:active,
+    &:focus {
+      border-bottom-color: $primary-color;
+      outline: none;
+
+      &+label {
+        top: 0;
+        font-size: 0.7em;
+        color: $primary-color;
+      }
+    }
+  }
+
+  &.filled label {
+    top: 0;
+    font-size: 0.7em;
+  }
+}
